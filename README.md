@@ -11,3 +11,5 @@ docker-compose build && docker-compose up
 ```
 
 Then navigate to: [`http://localhost:3000`](http://localhost:3000)
+
+http://localhost:3000/tts/process?INPUT_TYPE=TEXT&AUDIO=WAVE_FILE&OUTPUT_TYPE=AUDIO&LOCALE=en_US&INPUT_TEXT=Hello
