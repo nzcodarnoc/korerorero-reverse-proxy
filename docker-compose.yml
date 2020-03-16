@@ -1,33 +1,13 @@
-version: '2'
+version: '3.3'
+
 services:
-  web-a:
+  marytts:
+    image: korerorero-marytts:latest
+    container_name: korerorero-marytts
     build:
-      context: ./
-      dockerfile: Dockerfile.web
-    networks:
-      - default
-  web-b:
-    build:
-      context: ./
-      dockerfile: Dockerfile.web
-    networks:
-      - default
-  web-c:
-    build:
-      context: ./
-      dockerfile: Dockerfile.web
-    networks:
-      - default
-  mothership:
-    build:
-      context: ./
-      dockerfile: Dockerfile.mothership
-    networks:
-      - default
-    depends_on:
-      - web-a
-      - web-b
-      - web-c
+      context: https://github.com/ServiceInnovationLab/korerorero-marytts.git
+    volumes:
+      - ./build:/build     
   proxy:
     build:
       context: ./
@@ -35,9 +15,7 @@ services:
     networks:
       - default
     links:
-      - mothership
-      - web-a
-      - web-b
-      - web-c
+      - marytts
     ports:
       - "3000:3000"
+

@@ -1,4 +1,4 @@
-FROM node:6
+FROM node:12
 
 # make the src folder available in the docker image
 ADD src/ /src
@@ -12,4 +12,4 @@ RUN npm install
 EXPOSE 3000
 
 # start node with the index.js file of our hello-world application
-CMD ["node", "proxy.js"]
+CMD ["node", "index.js"]
