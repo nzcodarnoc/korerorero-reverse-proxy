@@ -1,7 +1,13 @@
 version: '3.3'
-
 services:
-  marytts:
+  mouth-shapes:
+    image: korerorero-mouth-shapes:latest
+    container_name: korerorero-mouth-shapes
+    build:
+      context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git
+    volumes:
+      - ./build:/build     
+  tts:
     image: korerorero-marytts:latest
     container_name: korerorero-marytts
     build:
@@ -15,7 +21,8 @@ services:
     networks:
       - default
     links:
-      - marytts
+      - tts
+      - mouth-shapes
     ports:
       - "3000:3000"
 
