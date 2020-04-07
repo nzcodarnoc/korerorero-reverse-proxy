@@ -1,14 +1,15 @@
-var express = require('express');
-var { createProxyMiddleware } = require('http-proxy-middleware');
+var express = require('express')
+var { createProxyMiddleware } = require('http-proxy-middleware')
 
-var app = express();
+var app = express()
 
 app.use(createProxyMiddleware('/tts', {
     target: 'http://tts:59125',
     pathRewrite: {
-      '^/tts': ''
-    }
-}));
+      '^/tts': '',
+    },
+  })
+)
 
 app.use(createProxyMiddleware('/mouth-shapes', {
   target: 'http://mouth-shapes:3000',
@@ -16,6 +17,5 @@ app.use(createProxyMiddleware('/mouth-shapes', {
     '^/mouth-shapes': ''
   }
 }));
-
 
 app.listen(3000);
