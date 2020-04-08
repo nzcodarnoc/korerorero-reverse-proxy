@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:13
 
 # make the src folder available in the docker image
 ADD src/ /src
