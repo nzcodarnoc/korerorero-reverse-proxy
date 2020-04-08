@@ -1,19 +1,34 @@
 version: '3.3'
 services:
+  tts:
+    image: korerorero-tts:latest
+    container_name: korerorero-tts
+    build:
+      context: https://github.com/ServiceInnovationLab/korerorero-marytts.git
+    volumes:
+      - ./build:/build
+    networks:
+      - default        
+  orchestration:
+    image: korerorero-orchestration:latest
+    container_name: korerorero-orchestration
+    build:
+      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git
+    volumes:
+      - ./build:/build
+    networks:
+      - default        
   mouth-shapes:
     image: korerorero-mouth-shapes:latest
     container_name: korerorero-mouth-shapes
     build:
       context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git
     volumes:
-      - ./build:/build     
-  tts:
-    image: korerorero-marytts:latest
-    container_name: korerorero-marytts
-    build:
-      context: https://github.com/ServiceInnovationLab/korerorero-marytts.git
-    volumes:
-      - ./build:/build     
+      - ./build:/build               
+    networks:
+      - default  
+    links:
+      - tts      
   proxy:
     build:
       context: ./
@@ -22,6 +37,7 @@ services:
       - default
     links:
       - tts
+      - orchestration
       - mouth-shapes
     ports:
       - "3000:3000"
