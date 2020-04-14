@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "exit 0"
   },
   "author": "",
   "license": "ISC",
@@ -12,72 +12,10 @@
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
-    "http-proxy-middleware": "^1.0.3"
+    "helmet": "^3.22.0",
+    "http-proxy-middleware": "^1.0.2"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-react-app": "^5.2.1",
-    "eslint-loader": "^3.0.3",
-    "eslint-plugin-flowtype": "^4.6.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.1",
-    "husky": "^4.2.3",
-    "lint-staged": "^10.0.8",
-    "prettier": "^2.0.2",
-    "stylelint": "^13.2.1"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm test"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json}": [
-      "prettier --write",
-      "eslint --max-warnings 0",
-      "git add"
-    ],
-    "src/**/*.{css,scss,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "prettier": {
-    "trailingComma": "es5",
-    "semi": false,
-    "singleQuote": true
-  },
-  "stylelint": {
-    "processors": [
-      "stylelint-processor-styled-components"
-    ],
-    "extends": [
-      "stylelint-config-recommended",
-      "stylelint-config-styled-components"
-    ]
-  },
-  "babelMacros": {
-    "styledComponents": {
-      "pure": true
-    }
+    "prettier": "^2.0.4"
   }
 }
