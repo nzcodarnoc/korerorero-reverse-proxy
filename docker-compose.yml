@@ -12,6 +12,8 @@ services:
   orchestration:
     image: korerorero-orchestration:latest
     container_name: korerorero-orchestration
+    env_file:
+      - orchestration.env
     build:
       context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git
     volumes:
@@ -21,6 +23,8 @@ services:
   mouth-shapes:
     image: korerorero-mouth-shapes:latest
     container_name: korerorero-mouth-shapes
+    env_file:
+      - mouth-shapes.env
     build:
       context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git
     volumes:
@@ -40,5 +44,5 @@ services:
       - orchestration
       - mouth-shapes
     ports:
-      - "3000:3000"
+      - "8000:8000"
 
