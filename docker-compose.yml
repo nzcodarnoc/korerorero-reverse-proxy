@@ -1,5 +1,14 @@
-version: '3.3'
+version: '3.6'
 services:
+  front-end:
+    image: korerorero-front-end:latest
+    container_name: korerorero-front-end
+    build:
+      context: /Users/conrad/dev/korerorero/korerorero-front-end
+    volumes:
+      - ./build:/build
+    networks:
+      - default
   tts:
     image: korerorero-tts:latest
     container_name: korerorero-tts
@@ -40,6 +49,7 @@ services:
     networks:
       - default
     links:
+      - front-end
       - tts
       - orchestration
       - mouth-shapes
