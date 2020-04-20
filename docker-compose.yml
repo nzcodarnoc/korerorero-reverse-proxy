@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.3'
 services:
   front-end:
     image: korerorero-front-end:latest
