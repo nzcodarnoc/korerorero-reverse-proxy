@@ -4,7 +4,7 @@ services:
     image: korerorero-front-end:latest
     container_name: korerorero-front-end
     build:
-      context: /Users/conrad/dev/korerorero/korerorero-front-end
+      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#install-chat-ui
     volumes:
       - ./build:/build
     networks:
@@ -30,15 +30,16 @@ services:
     networks:
       - default      
     links:
-      - tts          
+      - tts
+      - mouth-shapes
   mouth-shapes:
     image: korerorero-mouth-shapes:latest
     container_name: korerorero-mouth-shapes
     env_file:
       - mouth-shapes.env
     build:
-     context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git#install-chat-ui
-     volumes:
+     context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git#new-endpoint-send-ref-to-audio
+    volumes:
       - ./build:/build               
     networks:
       - default  
