@@ -24,19 +24,21 @@ services:
     env_file:
       - orchestration.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git
+      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git#implement-receive-message-api
     volumes:
       - ./build:/build
     networks:
-      - default        
+      - default      
+    links:
+      - tts          
   mouth-shapes:
     image: korerorero-mouth-shapes:latest
     container_name: korerorero-mouth-shapes
     env_file:
       - mouth-shapes.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git
-    volumes:
+     context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git#install-chat-ui
+     volumes:
       - ./build:/build               
     networks:
       - default  
