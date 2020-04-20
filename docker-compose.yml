@@ -13,7 +13,7 @@ services:
     image: korerorero-tts:latest
     container_name: korerorero-tts
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-marytts.git
+      context: https://github.com/ServiceInnovationLab/korerorero-marytts.git#v1.0.0
     volumes:
       - ./build:/build
     networks:
