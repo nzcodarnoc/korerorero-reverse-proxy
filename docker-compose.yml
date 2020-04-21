@@ -1,10 +1,19 @@
 version: '3.3'
 services:
+  front-end:
+    image: korerorero-front-end:latest
+    container_name: korerorero-front-end
+    build:
+      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#install-chat-ui
+    volumes:
+      - ./build:/build
+    networks:
+      - default
   tts:
     image: korerorero-tts:latest
     container_name: korerorero-tts
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-marytts.git
+      context: https://github.com/ServiceInnovationLab/korerorero-marytts.git#v1.0.0
     volumes:
       - ./build:/build
     networks:
@@ -15,18 +24,21 @@ services:
     env_file:
       - orchestration.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git
+      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git#implement-receive-message-api
     volumes:
       - ./build:/build
     networks:
-      - default        
+      - default      
+    links:
+      - tts
+      - mouth-shapes
   mouth-shapes:
     image: korerorero-mouth-shapes:latest
     container_name: korerorero-mouth-shapes
     env_file:
       - mouth-shapes.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git
+     context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git#new-endpoint-send-ref-to-audio
     volumes:
       - ./build:/build               
     networks:
@@ -40,6 +52,7 @@ services:
     networks:
       - default
     links:
+      - front-end
       - tts
       - orchestration
       - mouth-shapes
