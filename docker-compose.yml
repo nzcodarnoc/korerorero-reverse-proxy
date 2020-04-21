@@ -38,7 +38,7 @@ services:
     env_file:
       - mouth-shapes.env
     build:
-     context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git#new-endpoint-send-ref-to-audio
+     context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git#v0.1.0
     volumes:
       - ./build:/build               
     networks:
