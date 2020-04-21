@@ -4,7 +4,7 @@ services:
     image: korerorero-front-end:latest
     container_name: korerorero-front-end
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#install-chat-ui
+      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#v0.1.0
     volumes:
       - ./build:/build
     networks:
