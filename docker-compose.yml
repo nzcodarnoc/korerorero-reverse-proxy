@@ -24,7 +24,7 @@ services:
     env_file:
       - orchestration.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git#implement-receive-message-api
+      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git#v0.1.0
     volumes:
       - ./build:/build
     networks:
