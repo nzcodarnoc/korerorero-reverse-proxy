@@ -1,0 +1,31 @@
+classDiagram
+    class reverse_proxy {
+        <<Service>> 
+        http://local-host:8000
+    }
+    class front_end {
+        <<Service>>
+        http://front-end:3000 
+    }
+    class orchestration {
+        <<Service>>
+        http://orchestration:3001
+        TTS API
+        Mouth Shapes API
+    }
+    class mouth_shapes {
+        <<Service>>
+        http://mouth-shapes:3005
+        TTS audio
+        Mouth shapes analysis
+    }
+    class text_to_speech {
+        <<Service>>
+        http://tts:59125
+    }
+    reverse_proxy -- front_end
+    reverse_proxy -- orchestration
+    orchestration -- mouth_shapes
+    orchestration .. text_to_speech: API knowledge
+    text_to_speech -- mouth_shapes: tts audio is saved in mouth_shapes
+    mouth_shapes -- reverse_proxy: tts audio proxy
