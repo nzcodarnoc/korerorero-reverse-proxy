@@ -1,0 +1,29 @@
+sequenceDiagram
+    participant frontEnd as Front end
+    participant reverseProxy as Reverse proxy
+    participant orch as Orchestration
+    participant mouthShapes as Mouth Shapes
+    participant tts as Text to speech
+
+    frontEnd->>+reverseProxy: post request { message }
+    reverseProxy->>+orch: proxy post request { message }
+    activate orch
+        orch->>orch:generate tts-query-url for message
+        orch->>+mouthShapes: post process { tts-query-url }
+        mouthShapes->>+tts:get tts-query-url
+        tts->>tts:generates voice audio
+        tts-->>-mouthShapes:audio.wav
+        mouthShapes->>mouthShapes:store voice audio
+        mouthShapes->>mouthShapes:generate mouth shapes
+        mouthShapes-->>-orch:{ mouthCues, uri to audio.wav }
+        orch-->>reverseProxy:proxy { mouthCues, uri to audio.wav }
+    deactivate orch
+    reverseProxy-->>-frontEnd:{ mouthCues, uri to audio.wav }
+    frontEnd->>+reverseProxy:get { audio }
+    reverseProxy->>+orch: proxy get { audio }
+    orch->>+mouthShapes: proxy get { audio }
+    mouthShapes-->>-orch:audio.wav
+    orch-->>-reverseProxy:proxy audio.wav
+    reverseProxy-->>-frontEnd:proxy audio.wav
+    frontEnd->>frontEnd:Assemble and play mouth animation
+
