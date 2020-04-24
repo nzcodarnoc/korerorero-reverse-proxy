@@ -1,6 +1,6 @@
 # Korerorero / Reverse Proxy
 
-`http-proxy-middlware` to serve a reverse proxy that routes to multiple `express` applications as containers via `docker-compose`
+`http-proxy-middleware` to serve a reverse proxy that routes to multiple `express` applications as containers via `docker-compose`
 
 ## Getting Started
 
