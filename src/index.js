@@ -1,3 +1,4 @@
+// @ts-nocheck
 const express = require("express");
 const helmet = require("helmet");
 
@@ -11,24 +12,6 @@ app.disable("x-powered-by");
 app.get("/", function (_req, res) {
   res.send("OK. Reverse proxy service");
 });
-
-app.use(
-  createProxyMiddleware("/tts", {
-    target: "http://tts:59125",
-    pathRewrite: {
-      "^/tts": "",
-    },
-  })
-);
-
-app.use(
-  createProxyMiddleware("/mouth-shapes", {
-    target: "http://mouth-shapes:3005",
-    pathRewrite: {
-      "^/mouth-shapes": "",
-    },
-  })
-);
 
 app.use(
   createProxyMiddleware("/orchestration", {

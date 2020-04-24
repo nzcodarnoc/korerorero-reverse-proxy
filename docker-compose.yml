@@ -53,9 +53,7 @@ services:
       - default
     links:
       - front-end
-      - tts
       - orchestration
-      - mouth-shapes
     ports:
       - "8000:8000"
 
