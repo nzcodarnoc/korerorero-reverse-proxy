@@ -24,7 +24,7 @@ services:
     env_file:
       - orchestration.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git#v0.1.0
+      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git#v0.1.1
     volumes:
       - ./build:/build
     networks:
@@ -38,7 +38,7 @@ services:
     env_file:
       - mouth-shapes.env
     build:
-     context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git#v0.1.0
+     context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git#v0.1.1
     volumes:
       - ./build:/build               
     networks:
