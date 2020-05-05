@@ -22,7 +22,7 @@ services:
     image: korerorero-speech-recognition:latest
     container_name: korerorero-speech-recognition
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-speech-recognition.git#dockerize
+      context: https://github.com/ServiceInnovationLab/korerorero-speech-recognition.git#v0.1.0
     volumes:
       - ./build:/build
     networks:
