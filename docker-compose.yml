@@ -4,7 +4,7 @@ services:
     image: korerorero-front-end:latest
     container_name: korerorero-front-end
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#v0.1.1
+      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#integrate-deep-speech
     volumes:
       - ./build:/build
     networks:
@@ -42,7 +42,6 @@ services:
     links:
       - tts
       - mouth-shapes
-      - speech-recognition
   mouth-shapes:
     image: korerorero-mouth-shapes:latest
     container_name: korerorero-mouth-shapes
@@ -65,5 +64,6 @@ services:
     links:
       - front-end
       - orchestration
+      - speech-recognition
     ports:
       - "8000:8000"

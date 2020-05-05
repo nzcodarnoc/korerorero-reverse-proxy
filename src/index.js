@@ -31,4 +31,16 @@ app.use(
   })
 );
 
+
+// ANCHOR /recognizer
+app.use(
+  createProxyMiddleware("/recognizer", {
+    target: "http://speech-recognition:4000",
+    pathRewrite: {
+      "^/recognizer": "",
+    },
+    ws: true,
+  })
+);
+
 app.listen(8000);
