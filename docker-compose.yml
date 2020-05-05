@@ -17,7 +17,16 @@ services:
     volumes:
       - ./build:/build
     networks:
-      - default        
+      - default
+  speech-recognition:
+    image: korerorero-speech-recognition:latest
+    container_name: korerorero-speech-recognition
+    build:
+      context: https://github.com/ServiceInnovationLab/korerorero-speech-recognition.git#v0.1.0
+    volumes:
+      - ./build:/build
+    networks:
+      - default      
   orchestration:
     image: korerorero-orchestration:latest
     container_name: korerorero-orchestration
@@ -33,6 +42,7 @@ services:
     links:
       - tts
       - mouth-shapes
+      - speech-recognition
   mouth-shapes:
     image: korerorero-mouth-shapes:latest
     container_name: korerorero-mouth-shapes
@@ -57,4 +67,3 @@ services:
       - orchestration
     ports:
       - "8000:8000"
-
