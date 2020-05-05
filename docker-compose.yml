@@ -25,7 +25,7 @@ services:
       - orchestration.env
       - ibm-credentials.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git#integrate-watson
+      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git#v0.2.0
     volumes:
       - ./build:/build
     networks:
