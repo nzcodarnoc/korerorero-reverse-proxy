@@ -4,7 +4,7 @@ services:
     image: korerorero-front-end:latest
     container_name: korerorero-front-end
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#integrate-deep-speech
+      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#integrate-speech-with-state
     volumes:
       - ./build:/build
     networks:
