@@ -3,8 +3,10 @@ services:
   front-end:
     image: korerorero-front-end:latest
     container_name: korerorero-front-end
+    env_file:
+      - front-end.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#v0.2.0
+      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#v0.2.1
     volumes:
       - ./build:/build
     networks:
