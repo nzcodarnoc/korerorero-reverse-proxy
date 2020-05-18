@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.8'
 services:
   front-end:
     image: korerorero-front-end:latest
@@ -61,6 +61,15 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.proxy
+    env_file:
+      - proxy.env
+    volumes:
+      - type: bind
+        source: ${SSL_CERT_SYMLINK_DIR}
+        target: /config/certs
+      - type: bind
+        source: ${SSL_CERT_ARCHIVE_DIR}
+        target: /archive
     networks:
       - default
     links:
@@ -68,4 +77,4 @@ services:
       - orchestration
       - speech-recognition
     ports:
-      - "8000:8000"
+      - "${PORT}:${PORT}"
