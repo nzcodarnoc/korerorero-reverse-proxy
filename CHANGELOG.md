@@ -6,15 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [0.3.1] - 2020-05-05
+### Added
+- Added support for https
+
 ## [0.3.0] - 2020-05-07
 ### Added
 - Integration deep speech voice recognition
-
-## [0.2.0] - 2020-05-05
-### Added
-- Integration with IBM Watson
-### Changed
-- Improved documentation 
 
 ## [0.2.0] - 2020-05-05
 ### Added
