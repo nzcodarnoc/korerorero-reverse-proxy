@@ -77,4 +77,4 @@ services:
       - orchestration
       - speech-recognition
     ports:
-      - "443:443"
+      - "${PORT}:${PORT}"

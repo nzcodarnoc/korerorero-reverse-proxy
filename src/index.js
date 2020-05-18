@@ -45,8 +45,12 @@ app.use(
   })
 );
 
-https.createServer({
-  key: fs.readFileSync(process.env.KEY),
-  cert: fs.readFileSync(process.env.CERT),
-  passphrase: process.env.PASSPHRASE
-}, app).listen(443);
+if (process.env.USE_HTTPS === 'false') {
+  app.listen(8000)  
+} else {
+  https.createServer({
+    key: fs.readFileSync(process.env.KEY),
+    cert: fs.readFileSync(process.env.CERT),
+    passphrase: process.env.PASSPHRASE
+  }, app).listen(443);
+}
