@@ -1,6 +1,8 @@
 // @ts-nocheck
 const express = require("express");
 const helmet = require("helmet");
+const https = require('https');
+const fs = require('fs');
 
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
@@ -43,4 +45,8 @@ app.use(
   })
 );
 
-app.listen(8000);
+https.createServer({
+  key: fs.readFileSync(process.env.KEY),
+  cert: fs.readFileSync(process.env.CERT),
+  passphrase: process.env.PASSPHRASE
+}, app).listen(443);

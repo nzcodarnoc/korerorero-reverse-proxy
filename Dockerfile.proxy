@@ -1,11 +1,14 @@
 FROM node:13
 
-ADD src/ /src
-ADD package.json /src
+COPY src/ /src
+COPY package*.json /src/
+
+WORKDIR /config/certs
+WORKDIR /archive
 WORKDIR /src
 
 RUN npm install
 
-EXPOSE 8000
+EXPOSE 443
 
 CMD ["node", "index.js"]
