@@ -2,41 +2,41 @@ version: '3.8'
 services:
   front-end:
     image: korerorero-front-end:latest
-    container_name: korerorero-front-end
+    container_name: nzcodarnoc-korerorero-front-end
     env_file:
       - front-end.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-front-end.git#v0.2.1
+      context: https://github.com/nzcodarnoc/korerorero-front-end.git#v0.2.1
     volumes:
       - ./build:/build
     networks:
       - default
   tts:
     image: korerorero-tts:latest
-    container_name: korerorero-tts
+    container_name: nzcodarnoc-korerorero-tts
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-marytts.git#v1.0.1
+      context: https://github.com/nzcodarnoc/korerorero-marytts.git#v1.0.1
     volumes:
       - ./build:/build
     networks:
       - default
   speech-recognition:
     image: korerorero-speech-recognition:latest
-    container_name: korerorero-speech-recognition
+    container_name: nzcodarnoc-korerorero-speech-recognition
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-speech-recognition.git#v0.1.0
+      context: https://github.com/nzcodarnoc/korerorero-speech-recognition.git#v0.1.0
     volumes:
       - ./build:/build
     networks:
       - default      
   orchestration:
     image: korerorero-orchestration:latest
-    container_name: korerorero-orchestration
+    container_name: nzcodarnoc-korerorero-orchestration
     env_file:
       - orchestration.env
       - ibm-credentials.env
     build:
-      context: https://github.com/ServiceInnovationLab/korerorero-orchestration.git#v0.2.0
+      context: https://github.com/nzcodarnoc/korerorero-orchestration.git#v0.2.0
     volumes:
       - ./build:/build
     networks:
@@ -46,11 +46,11 @@ services:
       - mouth-shapes
   mouth-shapes:
     image: korerorero-mouth-shapes:latest
-    container_name: korerorero-mouth-shapes
+    container_name: nzcodarnoc-korerorero-mouth-shapes
     env_file:
       - mouth-shapes.env
     build:
-     context: https://github.com/ServiceInnovationLab/korerorero-mouth-shapes.git#v0.1.1
+     context: https://github.com/nzcodarnoc/korerorero-mouth-shapes.git#v0.1.1
     volumes:
       - ./build:/build               
     networks:
@@ -58,6 +58,7 @@ services:
     links:
       - tts      
   proxy:
+    container_name: nzcodarnoc-korerorero-reverse-proxy
     build:
       context: ./
       dockerfile: Dockerfile.proxy
