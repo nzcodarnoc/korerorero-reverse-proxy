@@ -1,8 +1,7 @@
 // @ts-nocheck
 const express = require("express");
 const helmet = require("helmet");
-const https = require('https');
-const fs = require('fs');
+const env = require("./env")
 
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
@@ -17,7 +16,7 @@ app.get("/", function (_req, res) {
 
 app.use(
   createProxyMiddleware("/orchestration", {
-    target: "http://orchestration:3001",
+    target: env.ORCHESTRATION,
     pathRewrite: {
       "^/orchestration": "",
     },
@@ -26,18 +25,17 @@ app.use(
 
 app.use(
   createProxyMiddleware("/front-end", {
-    target: "http://front-end:3000",
+    target: env.FRONT_END,
     pathRewrite: {
       "^/front-end": "",
     },
   })
 );
 
-
 // ANCHOR /recognizer
 app.use(
   createProxyMiddleware("/recognizer", {
-    target: "http://speech-recognition:4000",
+    target: env.RECOGNIZER,
     pathRewrite: {
       "^/recognizer": "",
     },
@@ -45,12 +43,4 @@ app.use(
   })
 );
 
-if (process.env.USE_HTTPS === 'false') {
-  app.listen(8000)  
-} else {
-  https.createServer({
-    key: fs.readFileSync(process.env.KEY),
-    cert: fs.readFileSync(process.env.CERT),
-    passphrase: process.env.PASSPHRASE
-  }, app).listen(443);
-}
+app.listen(env.PORT)  
