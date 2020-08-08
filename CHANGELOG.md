@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.2] - 2020-08-08
+### Added
+- Converted hardcoded host paths into config
+### Changed
+- Removed https support in favour of having this service behind a gateway
 
 ## [0.3.1] - 2020-05-19
 ### Added
