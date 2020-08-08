@@ -63,14 +63,7 @@ services:
       context: ./
       dockerfile: Dockerfile.proxy
     env_file:
-      - proxy.env
-    volumes:
-      - type: bind
-        source: ${SSL_CERT_SYMLINK_DIR}
-        target: /config/certs
-      - type: bind
-        source: ${SSL_CERT_ARCHIVE_DIR}
-        target: /archive
+      - .env
     networks:
       - default
     links:
