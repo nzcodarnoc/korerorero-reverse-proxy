@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.3] - 2020-08-09
+### Changed
+- Bumped front-end version
+- replace `latest` tag in favour of explicit versions for all images
+
 ## [0.3.2] - 2020-08-08
 ### Added
 - Converted hardcoded host paths into config
