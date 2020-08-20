@@ -10,8 +10,16 @@ classDiagram
     class orchestration {
         <<Service>>
         http://orchestration:3001
-        TTS API
-        Mouth Shapes API
+        AI API
+        Voice service API
+    }
+    class ibm_watson {
+        <<External API>>
+    }
+    class voice_service {
+        <<Service>>
+        http://voice-service:8081
+        Voice cache
     }
     class mouth_shapes {
         <<Service>>
@@ -25,7 +33,9 @@ classDiagram
     }
     reverse_proxy -- front_end
     reverse_proxy -- orchestration
-    orchestration -- mouth_shapes
-    orchestration .. text_to_speech: API knowledge
+    orchestration -- ibm_watson
+    orchestration -- voice_service
+    voice_service .. text_to_speech: API knowledge
     text_to_speech -- mouth_shapes
-    mouth_shapes -- reverse_proxy: tts audio proxy
+    voice_service -- mouth_shapes
+    voice_service -- reverse_proxy: tts audio proxy
