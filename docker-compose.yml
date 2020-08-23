@@ -1,4 +1,7 @@
 version: '3.8'
+volumes:
+  korerorero-voice-service-cache:
+    external: true
 services:
   front-end:
     image: korerorero-front-end:v0.3.1
@@ -20,6 +23,20 @@ services:
       - ./build:/build
     networks:
       - default
+  voice-service:
+    image: korerorero-voice-service:dev
+    container_name: nzcodarnoc-korerorero-voice-service
+    build:
+      context: ../korerorero-voice-service
+    user: "1000:1000" # this sets the owner of the /voice-cache mount
+    volumes:
+      - korerorero-voice-service-cache:/voice-cache:rw
+    networks:
+      - default
+    env_file:
+      - voice-service.env
+    links:
+      - mouth-shapes
   speech-recognition:
     image: korerorero-speech-recognition:v0.1.0
     container_name: nzcodarnoc-korerorero-speech-recognition
@@ -42,8 +59,7 @@ services:
     networks:
       - default      
     links:
-      - tts
-      - mouth-shapes
+      - voice-service
   mouth-shapes:
     image: korerorero-mouth-shapes:v0.1.1
     container_name: nzcodarnoc-korerorero-mouth-shapes

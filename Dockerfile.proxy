@@ -1,4 +1,4 @@
-FROM node:13
+FROM node:13-alpine
 
 COPY src/ /src
 COPY package*.json /src/
@@ -11,4 +11,5 @@ RUN npm install
 
 EXPOSE 443
 
+USER node
 CMD ["node", "index.js"]

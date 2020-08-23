@@ -1,13 +1,17 @@
 {
   "name": "reverse-proxy",
   "version": "1.0.0",
-  "description": "",
+  "description": "`http-proxy-middleware` to serve a reverse proxy that routes to multiple `express` applications as containers via `docker-compose`",
   "main": "index.js",
   "scripts": {
     "test": "exit 0"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Conrad Johnston <conrad@darnoc.co.nz>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nzcodarnoc/korerorero-reverse-proxy.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
