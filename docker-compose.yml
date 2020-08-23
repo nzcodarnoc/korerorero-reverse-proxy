@@ -27,7 +27,7 @@ services:
     image: korerorero-voice-service:dev
     container_name: nzcodarnoc-korerorero-voice-service
     build:
-      context: ../korerorero-voice-service
+      context: https://github.com/nzcodarnoc/korerorero-voice-service.git#v0.1.0
     user: "1000:1000" # this sets the owner of the /voice-cache mount
     volumes:
       - korerorero-voice-service-cache:/voice-cache:rw
@@ -53,7 +53,7 @@ services:
       - orchestration.env
       - ibm-credentials.env
     build:
-      context: https://github.com/nzcodarnoc/korerorero-orchestration.git#v0.2.0
+      context: https://github.com/nzcodarnoc/korerorero-orchestration.git#v0.3.0
     volumes:
       - ./build:/build
     networks:
