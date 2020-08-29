@@ -12,7 +12,7 @@
     "renewStagger": "3d",
     "accountKeyType": "EC-P256",
     "serverKeyType": "RSA-2048",
-    "subscriberEmail": "conrad@darnoc.co.nz"
+    "subscriberEmail": "hello@example.com"
   },
   "sites": []
 }
