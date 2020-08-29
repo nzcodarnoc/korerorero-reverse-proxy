@@ -74,7 +74,7 @@ services:
     links:
       - tts      
   proxy:
-    image: nzcodarnoc/korerorero-reverse-proxy:v0.3.2
+    image: korerorero-reverse-proxy:latest
     container_name: nzcodarnoc-korerorero-reverse-proxy
     build:
       context: ./
