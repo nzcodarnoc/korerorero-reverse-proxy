@@ -1,4 +1,3 @@
-// @ts-nocheck
 const express = require("express");
 const helmet = require("helmet");
 const env = require("./env")

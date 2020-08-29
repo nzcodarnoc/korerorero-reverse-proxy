@@ -1,11 +1,12 @@
 const app = require('./app.js');
+const env = require("./env")
 
 require('greenlock-express')
     .init({
         packageRoot: __dirname,
 
         // contact for security and critical bug notices
-        maintainerEmail: "conrad@darnoc.co.nz",
+        maintainerEmail: env.MAINTAINER_EMAIL,
 
         // where to look for configuration
         configDir: './greenlock.d',
