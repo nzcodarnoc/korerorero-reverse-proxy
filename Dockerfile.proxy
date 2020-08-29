@@ -1,4 +1,4 @@
-FROM node:13-alpine
+FROM node:12-alpine
 
 COPY src/ /src
 COPY package*.json /src/

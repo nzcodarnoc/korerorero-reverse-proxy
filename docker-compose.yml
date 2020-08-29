@@ -4,7 +4,7 @@ volumes:
     external: true
 services:
   front-end:
-    image: korerorero-front-end:v0.3.1
+    image: nzcodarnoc/korerorero-front-end:v0.3.1
     container_name: nzcodarnoc-korerorero-front-end
     env_file:
       - front-end.env
@@ -15,7 +15,7 @@ services:
     networks:
       - default
   tts:
-    image: korerorero-tts:v1.0.1
+    image: nzcodarnoc/korerorero-tts:v1.0.1
     container_name: nzcodarnoc-korerorero-tts
     build:
       context: https://github.com/nzcodarnoc/korerorero-marytts.git#v1.0.1
@@ -24,10 +24,10 @@ services:
     networks:
       - default
   voice-service:
-    image: korerorero-voice-service:dev
+    image: nzcodarnoc/korerorero-voice-service:v0.1.1
     container_name: nzcodarnoc-korerorero-voice-service
     build:
-      context: https://github.com/nzcodarnoc/korerorero-voice-service.git#v0.1.0
+      context: https://github.com/nzcodarnoc/korerorero-voice-service.git#v0.1.1
     user: "1000:1000" # this sets the owner of the /voice-cache mount
     volumes:
       - korerorero-voice-service-cache:/voice-cache:rw
@@ -38,7 +38,7 @@ services:
     links:
       - mouth-shapes
   speech-recognition:
-    image: korerorero-speech-recognition:v0.1.0
+    image: nzcodarnoc/korerorero-speech-recognition:v0.1.0
     container_name: nzcodarnoc-korerorero-speech-recognition
     build:
       context: https://github.com/nzcodarnoc/korerorero-speech-recognition.git#v0.1.0
@@ -47,7 +47,7 @@ services:
     networks:
       - default      
   orchestration:
-    image: korerorero-orchestration:v0.2.0
+    image: nzcodarnoc/korerorero-orchestration:v0.2.0
     container_name: nzcodarnoc-korerorero-orchestration
     env_file:
       - orchestration.env
@@ -61,7 +61,7 @@ services:
     links:
       - voice-service
   mouth-shapes:
-    image: korerorero-mouth-shapes:v0.1.1
+    image: nzcodarnoc/korerorero-mouth-shapes:v0.1.1
     container_name: nzcodarnoc-korerorero-mouth-shapes
     env_file:
       - mouth-shapes.env
@@ -74,7 +74,7 @@ services:
     links:
       - tts      
   proxy:
-    image: korerorero-reverse-proxy:v0.3.2
+    image: nzcodarnoc/korerorero-reverse-proxy:v0.3.2
     container_name: nzcodarnoc-korerorero-reverse-proxy
     build:
       context: ./
