@@ -1,5 +1,6 @@
 version: '3.8'
 volumes:
+  korerorero-greenlock:
   korerorero-voice-service-cache:
     external: true
 services:
@@ -10,8 +11,6 @@ services:
       - front-end.env
     build:
       context: https://github.com/nzcodarnoc/korerorero-front-end.git#v0.3.1
-    volumes:
-      - ./build:/build
     networks:
       - default
   tts:
@@ -19,8 +18,6 @@ services:
     container_name: nzcodarnoc-korerorero-tts
     build:
       context: https://github.com/nzcodarnoc/korerorero-marytts.git#v1.0.1
-    volumes:
-      - ./build:/build
     networks:
       - default
   voice-service:
@@ -30,7 +27,7 @@ services:
       context: https://github.com/nzcodarnoc/korerorero-voice-service.git#v0.1.1
     user: "1000:1000" # this sets the owner of the /voice-cache mount
     volumes:
-      - korerorero-voice-service-cache:/voice-cache:rw
+      - korerorero-voice-service-cache:/voice-cache
     networks:
       - default
     env_file:
@@ -42,8 +39,6 @@ services:
     container_name: nzcodarnoc-korerorero-speech-recognition
     build:
       context: https://github.com/nzcodarnoc/korerorero-speech-recognition.git#v0.1.0
-    volumes:
-      - ./build:/build
     networks:
       - default      
   orchestration:
@@ -54,8 +49,6 @@ services:
       - ibm-credentials.env
     build:
       context: https://github.com/nzcodarnoc/korerorero-orchestration.git#v0.3.0
-    volumes:
-      - ./build:/build
     networks:
       - default      
     links:
@@ -67,20 +60,25 @@ services:
       - mouth-shapes.env
     build:
      context: https://github.com/nzcodarnoc/korerorero-mouth-shapes.git#v0.1.1
-    volumes:
-      - ./build:/build               
     networks:
       - default  
     links:
       - tts      
   proxy:
     image: korerorero-reverse-proxy:latest
+    command: node ssl-server.js  -- --staging
+    privileged: true
     container_name: nzcodarnoc-korerorero-reverse-proxy
+    volumes:
+      - korerorero-greenlock:/src/greenlock.d
+    env_file:
+      - .env
     build:
       context: ./
       dockerfile: Dockerfile.proxy
-    env_file:
-      - .env
+      args:
+        - MAINTAINER_EMAIL
+        - SSL_SUBJECT
     networks:
       - default
     links:
@@ -88,4 +86,6 @@ services:
       - orchestration
       - speech-recognition
     ports:
+      # - 80:80
+      # - 443:443
       - "${PORT}:${PORT}"

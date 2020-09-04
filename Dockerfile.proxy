@@ -1,15 +1,18 @@
 FROM node:12-alpine
 
+ARG MAINTAINER_EMAIL
+ARG SSL_SUBJECT
+
 COPY src/ /src
 COPY package*.json /src/
 
-WORKDIR /config/certs
-WORKDIR /archive
 WORKDIR /src
 
 RUN npm install
 
+RUN npx greenlock init --config-dir ./greenlock.d --maintainer-email $MAINTAINER_EMAIL
+RUN npx greenlock add  --subject ${SSL_SUBJECT}   --altnames $SSL_SUBJECT
+
 EXPOSE 443
 
-USER node
 CMD ["node", "index.js"]
