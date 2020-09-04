@@ -66,7 +66,7 @@ services:
       - tts      
   proxy:
     image: korerorero-reverse-proxy:latest
-    # command: node ssl-server.js  -- --staging
+    # command: node ssl-server.js
     # privileged: true
     container_name: nzcodarnoc-korerorero-reverse-proxy
     volumes:
