@@ -35,3 +35,28 @@ docker run --rm -it --name dcv -v $(pwd):/input pmsipilot/docker-compose-viz ren
 ### Other diagrams can be recreated with
 
 <https://mermaid-js.github.io/>
+
+### Run in production
+
+The docker-compose file assumes it's running in dev, and everything needs to be built.
+
+To serve it up in a prod environment, run the following commands in the terminal.
+
+They make all the images (except proxy) be pulled from Docker Hub, and, sets the start command to serve up a SSL version.
+
+```bash
+sed -i 's/build:/# build:/g' docker-compose.yml
+sed -i 's/context: /# context: /g' docker-compose.yml
+sed -i 's/    # context: \./  build:\n      context: \./g' docker-compose.yml
+
+sed -i 's/# command/command/g' docker-compose.yml
+sed -i 's/# privileged/privileged/g' docker-compose.yml
+sed -i 's/ports:/ports:\n      - 80:80\n      - 443:443/g' docker-compose.yml
+```
+
+### Notes on Greenlock in docker
+
+TL;DR: unless they certs are stored in a volume, they will be requested every time the container is brought up and the API limit will get hit pretty quick.
+
+<https://git.rootprojects.org/root/greenlock-express.js/issues/58>
+
