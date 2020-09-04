@@ -66,8 +66,8 @@ services:
       - tts      
   proxy:
     image: korerorero-reverse-proxy:latest
-    command: node ssl-server.js  -- --staging
-    privileged: true
+    # command: node ssl-server.js  -- --staging
+    # privileged: true
     container_name: nzcodarnoc-korerorero-reverse-proxy
     volumes:
       - korerorero-greenlock:/src/greenlock.d
