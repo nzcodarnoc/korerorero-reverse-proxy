@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2020-09-05
+### Changed
+- Fine tuned greenlock for use in a docker container
+- Made a persistent volume to store greenlock certs
+- All config options moved into .env
+- Greenlock config created automatically at build time
+- Made a script to convert docker-compose into a "production" runner. The script is in README.md
+
 ## [0.4.1] - 2020-08-29
 ### Added
 - Add greenlock to provide an SSL server option
