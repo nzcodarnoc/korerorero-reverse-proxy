@@ -42,13 +42,13 @@ services:
     networks:
       - default      
   orchestration:
-    image: nzcodarnoc/korerorero-orchestration:v0.2.0
+    image: nzcodarnoc/korerorero-orchestration:v0.3.2
     container_name: nzcodarnoc-korerorero-orchestration
     env_file:
       - orchestration.env
       - ibm-credentials.env
     build:
-      context: https://github.com/nzcodarnoc/korerorero-orchestration.git#v0.3.0
+      context: https://github.com/nzcodarnoc/korerorero-orchestration.git#v0.3.2
     networks:
       - default      
     links:
